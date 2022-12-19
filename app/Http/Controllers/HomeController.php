@@ -43,9 +43,14 @@ class HomeController extends Controller
         {
             $expense = $expenseTypes[$i];
             
-            $result[$expense] = number_format(rand(1, 15000) / 10, 2, '.', '');
+            $result[$expense] = number_format($this->randomDecimal(1, 5000), 2, '.', '');
         }
 
         return $result;
+    }
+
+    private function randomDecimal(float $min, float $max, int $digit = 2)
+    {
+        return mt_rand($min * 10, $max * 10) / pow(10, $digit);
     }
 }
